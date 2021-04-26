@@ -78,7 +78,8 @@ export default () => {
   const getImgs = doc => {
     return Array.from(doc.images)
       .filter(
-        img => img.currentSrc.includes("tokens.tent.app") || img.currentSrc.includes("https://icons.")
+        img =>
+          img.currentSrc.includes("tokens.tent.app") || img.currentSrc.includes("https://icons.")
       )
       .map(
         img =>
@@ -430,7 +431,7 @@ export default () => {
                             >
                               {el.detail.transactionType !== "BURN_ALL" ? (
                                 <a
-                                  href={`https://slpexplorer.tent.app/#tx/${el.txid}`}
+                                  href={`https://slp.tent.app/#tx/${el.txid}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
@@ -485,7 +486,7 @@ export default () => {
                             </div>
                           ))}
                           <a
-                            href={`https://slpexplorer.tent.app/#address/${wallet.Path245.slpAddress}`}
+                            href={`https://slp.tent.app/#address/${wallet.Path245.slpAddress}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
