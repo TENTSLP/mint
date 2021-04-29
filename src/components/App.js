@@ -49,27 +49,27 @@ const StyledTabsMenu = styled.div`
   }
 
   .ant-tabs-tab:hover {
-    color: #4ab290 !important;
+    color: #9900d0 !important;
     .anticon {
-      color: #4ab290;
+      color: #9900d0;
     }
   }
 
   .ant-tabs-tab-active.ant-tabs-tab {
-    color: #4ab290;
+    color: #9900d0;
     .anticon {
-      color: #4ab290;
+      color: #9900d0;
     }
   }
 
   .ant-tabs-tab-active.ant-tabs-tab {
-    color: #4ab290;
+    color: #9900d0;
     .anticon {
-      color: #4ab290;
+      color: #9900d0;
     }
   }
   .ant-tabs-tab-active:active {
-    color: #4ab290 !important;
+    color: #9900d0 !important;
   }
   .ant-tabs-ink-bar {
     display: none !important;
