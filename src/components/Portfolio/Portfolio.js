@@ -244,7 +244,7 @@ export default () => {
             onClose={onClose}
           >
             <Meta
-              avatar={<Img src={bchFlagLogo} width="96" height="54" />}
+              avatar={<Img src={bchFlagLogo} width="96" height="59" />}
               title={
                 <div
                   style={{

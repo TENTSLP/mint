@@ -234,7 +234,7 @@ const DividendHistory = () => {
               >
                 <StyledSummary>
                   <StyledSummaryIcons>
-                    <Img src={bchFlagLogo} width="96" height="54" />
+                    <Img src={bchFlagLogo} width="96" height="59" />
                     <StyledProgressAndIcon>
                       <StyledProgress
                         strokeColor={getProgressColor(dividend)}
