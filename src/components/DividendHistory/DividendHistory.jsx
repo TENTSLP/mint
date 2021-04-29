@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import Dividends from "../../utils/dividends/dividends";
 import { SLP_TOKEN_ICONS_URL } from "../Portfolio/Portfolio";
 import { EnhancedCard } from "../Portfolio/EnhancedCard";
-import bchFlagLogo from "../../assets/4-bitcoin-cash-logo-flag.png";
+import bchFlagLogo from "../../assets/tent-logo.png";
 import { getEncodedOpReturnMessage } from "../../utils/sendDividends";
 import ButtonGroup from "antd/lib/button/button-group";
 

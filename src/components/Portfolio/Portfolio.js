@@ -27,7 +27,7 @@ import { PlaneIcon, HammerIcon, FireIcon } from "../Common/CustomIcons";
 import Paragraph from "antd/lib/typography/Paragraph";
 import { OnBoarding } from "../OnBoarding/OnBoarding";
 import getTokenTransactionHistory from "../../utils/getTokenTransactionHistory";
-import bchFlagLogo from "../../assets/4-bitcoin-cash-logo-flag.png";
+import bchFlagLogo from "../../assets/tent-logo.png";
 
 export const SLP_TOKEN_ICONS_URL = "https://tokens.tent.app/64";
 export const BITCOIN_DOT_COM_ICONS_URL = "https://tokens.bitcoin.com/64";
