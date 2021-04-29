@@ -23,11 +23,12 @@ const AddrHolder = styled.textarea`
   // padding: 18px 0;
   padding: 20px 0px 0px 0px !important;
   text-align: center;
-  background: #8eaaaf;
+  background: #38bbd9;
   margin-top: 90px;
   margin-left: 15px;
   overflow: hidden;
   line-height: 0 !important;
+  color: #fff;
 `;
 
 const StyledInput = styled.div`
