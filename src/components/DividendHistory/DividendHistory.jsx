@@ -260,7 +260,7 @@ const DividendHistory = () => {
                     />
                   </StyledSummaryIcons>
                   <StyledDescriptions column={1}>
-                    <Descriptions.Item label="BCH Amount">{dividend.totalValue}</Descriptions.Item>
+                    <Descriptions.Item label="TENT Amount">{dividend.totalValue}</Descriptions.Item>
                     <Descriptions.Item label="Token">
                       {dividend.token.info.symbol}
                     </Descriptions.Item>

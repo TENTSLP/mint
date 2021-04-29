@@ -71,9 +71,9 @@ const Mint = ({ token, onClose }) => {
 
       if (/don't have the minting baton/.test(e.message)) {
         message = e.message;
-      } else if (/Invalid BCH address/.test(e.message)) {
+      } else if (/Invalid TENT Address/.test(e.message)) {
         message = "Invalid TENT address";
-      } else if (/Transaction input BCH amount is too low/.test(e.message)) {
+      } else if (/Transaction input TENT Amount is too low/.test(e.message)) {
         message = "Not enough TENT. Deposit some funds to use this feature.";
       } else if (!e.error) {
         message = `Transaction failed: no response from ${getRestUrl()}.`;
@@ -135,7 +135,9 @@ const Mint = ({ token, onClose }) => {
                     <FormItemWithQRCodeAddon
                       validateStatus={!formData.dirty && !formData.baton ? "error" : ""}
                       help={
-                        !formData.dirty && !formData.baton ? "Should be a valid tentslp address" : ""
+                        !formData.dirty && !formData.baton
+                          ? "Should be a valid tentslp address"
+                          : ""
                       }
                       onScan={result => setFormData({ ...formData, address: result })}
                       inputProps={{

@@ -59,11 +59,11 @@ const Transfer = ({ token, onClose }) => {
         message = e.message;
       } else if (/has no matching Script/.test(e.message)) {
         message = "Invalid address";
-      } else if (/Transaction input BCH amount is too low/.test(e.message)) {
+      } else if (/Transaction input TENT Amount is too low/.test(e.message)) {
         message = "Not enough TENT. Deposit some funds to use this feature.";
       } else if (/Token Receiver Address must be simpleledger format/.test(e.message)) {
         message = "Token Receiver Address must be simpleledger format.";
-      } else if (/Invalid BCH address. Double check your address is valid/.test(e.message)) {
+      } else if (/Invalid TENT Address. Double check your address is valid/.test(e.message)) {
         message = "Invalid TENTSLP address. Double check your address is valid.";
       } else if (!e.error) {
         message = `Transaction failed: no response from ${getRestUrl()}.`;
@@ -129,7 +129,9 @@ const Transfer = ({ token, onClose }) => {
                     <FormItemWithQRCodeAddon
                       validateStatus={formData.dirty && !formData.address ? "error" : ""}
                       help={
-                        formData.dirty && !formData.address ? "Should be a valid tentslp address" : ""
+                        formData.dirty && !formData.address
+                          ? "Should be a valid tentslp address"
+                          : ""
                       }
                       onScan={result => setFormData({ ...formData, address: result })}
                       inputProps={{

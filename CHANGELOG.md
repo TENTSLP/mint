@@ -8,7 +8,7 @@
 
 ## Oct 1, 2020
 
-- Correct error handling for user attempt to send SLP to BCH address
+- Correct error handling for user attempt to send SLP to TENT Address
 - Correct error handling for user attempt to send SLP to invalid address
 - Introduce semantic versioning at 0.1.1
 
@@ -54,9 +54,9 @@
 ## Jan 15, 2020
 
 - [#27:](https://github.com/Bitcoin-com/mint/pull/27) First production release to https://mint.bitcoin.com
-- Pay BCH dividends to holders of SLP tokens in user's portfolio
+- Pay TENT dividends to holders of SLP tokens in user's portfolio
 - Send and receive BCH
-- Transaction history for BCH and SLP transactions
+- Transaction history for TENT and SLP transactions
 - Token icons matched to [Badger Mobile wallet](https://github.com/bitcoin-com/badger-mobile) icons for tokens without set icons
 
 ## Sept 2019

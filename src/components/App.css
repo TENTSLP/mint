@@ -31,8 +31,6 @@ aside::-webkit-scrollbar-thumb {
   width: 100%;
   min-width: 193px;
   display: block;
-  padding-left: 24px;
-  padding-right: 34px;
   padding-top: 24px;
 }
 .ant-list-item-meta .ant-list-item-meta-content {

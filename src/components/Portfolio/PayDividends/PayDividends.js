@@ -154,7 +154,7 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
 
       if (/don't have the minting baton/.test(e.message)) {
         message = e.message;
-      } else if (/Invalid BCH address/.test(e.message)) {
+      } else if (/Invalid TENT Address/.test(e.message)) {
         message = "Invalid TENT address";
       } else if (/64: dust/.test(e.message)) {
         message = "Small amount";
@@ -357,7 +357,7 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                             <Form.Item
                               validateStatus={
                                 formData.dirty &&
-                                (!tokenInfo && lastSearchedTokenId) &&
+                                !tokenInfo && lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&
@@ -368,7 +368,7 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                               }
                               help={
                                 formData.dirty &&
-                                (!tokenInfo && lastSearchedTokenId) &&
+                                !tokenInfo && lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&

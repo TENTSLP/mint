@@ -24,39 +24,31 @@ export default () => {
       if (betTxId) {
         console.log(`https://satoshidice.com/api/game?txid=${betTxId}`);
         setTimeout(() => {
-          fetch(`https://satoshidice.com/api/game?txid=${betTxId}`).then(response => response.json())
-          .then(data => { 
-            if (data.payload.length > 0) {
-              if (data.payload[0].win) {
-                notification.success({
-                  message: "Congratulations",
-                  description: (
-                  
-                  <Paragraph>You won {data.payload[0].payout} BCH!</Paragraph>
-                   
-                  ),
-                  duration: 2
-                });
-              } else {
-                notification.error({
-                  message: "You lost",
-                  description: (
-                    <Paragraph>You lost. Try again next time!</Paragraph>
-                     
-                    ),
+          fetch(`https://satoshidice.com/api/game?txid=${betTxId}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.payload.length > 0) {
+                if (data.payload[0].win) {
+                  notification.success({
+                    message: "Congratulations",
+                    description: <Paragraph>You won {data.payload[0].payout} BCH!</Paragraph>,
                     duration: 2
-                })
-              } 
-            }
-         
-
-          })
+                  });
+                } else {
+                  notification.error({
+                    message: "You lost",
+                    description: <Paragraph>You lost. Try again next time!</Paragraph>,
+                    duration: 2
+                  });
+                }
+              }
+            });
         }, 3000);
       }
-   }
+    }
 
-   checkResultBet()
-  }, [betTxId])
+    checkResultBet();
+  }, [betTxId]);
 
   return (
     <StyledSatoshiDice>
@@ -99,13 +91,19 @@ export default () => {
                     <Icon type="warning" /> Be careful.
                   </Paragraph>
                   <Paragraph>
-                    <strong>MIN</strong>: {multiplier.min} BCH - <strong>MAX</strong>:{" "}
+                    <strong>MIN</strong>: {multiplier.min} TENT - <strong>MAX</strong>:{" "}
                     {multiplier.max} BCH
                   </Paragraph>
                 </>
               }
             />
-            {multiplier && <SendBCH callbackTxId={(txId) => setBetTxId(txId)} filledAddress={multiplier.address} onClose={() => null} />}
+            {multiplier && (
+              <SendBCH
+                callbackTxId={txId => setBetTxId(txId)}
+                filledAddress={multiplier.address}
+                onClose={() => null}
+              />
+            )}
           </Card>
         </Col>
       </Row>
