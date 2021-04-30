@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Form, Input, Icon } from "antd";
 import styled from "styled-components";
-import bchLogo from "../../assets/bch-logo-2.png";
+import bchLogo from "../../assets/tent-logo-2.png";
 import { ScanQRCode } from "./ScanQRCode";
 import withSLP from "../../utils/withSLP";
 

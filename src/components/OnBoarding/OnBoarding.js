@@ -3,7 +3,7 @@ import { WalletContext } from "../../utils/context";
 import { Input, Button, Icon, Row, Col, Card, Form, Collapse } from "antd";
 import Img from "react-image";
 import StyledOnboarding from "../Common/StyledOnBoarding";
-import pixelSquareLogo from "../../assets/pixel-square-icon.png";
+import pixelSquareLogo from "../../assets/tent-logo-3.png";
 
 export const OnBoarding = ({ history }) => {
   const ContextValue = React.useContext(WalletContext);
@@ -103,8 +103,6 @@ export const OnBoarding = ({ history }) => {
                     </Form.Item>
                   )}
                 </Collapse.Panel>
-
-             
               </Collapse>
 
               <div style={{ paddingTop: "12px" }}>

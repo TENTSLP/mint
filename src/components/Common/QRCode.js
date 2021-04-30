@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import RawQRCode from "qrcode.react";
 import slpLogo from "../../assets/slp-logo-2.png";
-import bchLogo from "../../assets/bch-icon-qrcode.png";
+import bchLogo from "../../assets/tent-icon-qrcode.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Input, Button } from "antd";
 
