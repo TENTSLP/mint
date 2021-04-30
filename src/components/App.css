@@ -101,8 +101,8 @@ aside::-webkit-scrollbar-thumb {
 
 .ant-radio-group-solid .ant-radio-button-wrapper {
   padding-top: 10px;
-  padding-left: 20px;
   margin-top: 0px;
+  text-align: center;
 }
 
 .ant-radio-group-solid .ant-radio-button-wrapper-checked {

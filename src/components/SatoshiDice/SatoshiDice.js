@@ -92,7 +92,7 @@ export default () => {
                   </Paragraph>
                   <Paragraph>
                     <strong>MIN</strong>: {multiplier.min} TENT - <strong>MAX</strong>:{" "}
-                    {multiplier.max} BCH
+                    {multiplier.max} TENT
                   </Paragraph>
                 </>
               }

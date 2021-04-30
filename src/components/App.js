@@ -299,7 +299,7 @@ const App = () => {
                         value="slpAddress"
                         onClick={e => handleChangeAddress(e)}
                       >
-                        TENTSLP
+                        Tokens
                       </Radio.Button>
                       <Radio.Button
                         style={{
