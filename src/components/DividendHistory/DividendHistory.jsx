@@ -218,7 +218,7 @@ const DividendHistory = () => {
                       {dividend.txs.map((tx, index) => (
                         <Descriptions.Item key={tx} label={`Transaction ${index + 1}`}>
                           <a
-                            href={`https://explorer.bitcoin.com/bch/tx/${tx}`}
+                            href={`https://explorer.tent.app/tx/${tx}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

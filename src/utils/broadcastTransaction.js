@@ -48,7 +48,7 @@ const broadcastTransaction = async (SLPInstance, wallet, { ...args }) => {
     if (NETWORK === `mainnet`) {
       link = `https://explorer.tent.app/tx/${broadcastedTransaction}`;
     } else {
-      link = `https://explorer.tent.app/tx/${broadcastedTransaction}`;
+      link = `https://testnet-explorer.tent.app/tx/${broadcastedTransaction}`;
     }
 
     return link;
