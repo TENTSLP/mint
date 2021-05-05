@@ -29,7 +29,7 @@ import { OnBoarding } from "../OnBoarding/OnBoarding";
 import getTokenTransactionHistory from "../../utils/getTokenTransactionHistory";
 import bchFlagLogo from "../../assets/tent-logo.png";
 
-export const SLP_TOKEN_ICONS_URL = "https://tokens.tent.app/64";
+export const SLP_TOKEN_ICONS_URL = "https://testnet-tokens.tent.app/64";
 export const BITCOIN_DOT_COM_ICONS_URL = "https://tokens.bitcoin.com/64";
 
 export const StyledCollapse = styled(Collapse)`
@@ -79,7 +79,8 @@ export default () => {
     return Array.from(doc.images)
       .filter(
         img =>
-          img.currentSrc.includes("tokens.tent.app") || img.currentSrc.includes("https://icons.")
+          img.currentSrc.includes("testnet-tokens.tent.app") ||
+          img.currentSrc.includes("https://icons.")
       )
       .map(
         img =>
@@ -431,7 +432,7 @@ export default () => {
                             >
                               {el.detail.transactionType !== "BURN_ALL" ? (
                                 <a
-                                  href={`https://slp.tent.app/#tx/${el.txid}`}
+                                  href={`https://testnet-slp.tent.app/#tx/${el.txid}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
@@ -486,7 +487,7 @@ export default () => {
                             </div>
                           ))}
                           <a
-                            href={`https://slp.tent.app/#address/${wallet.Path245.slpAddress}`}
+                            href={`https://testnet-slp.tent.app/#address/${wallet.Path245.slpAddress}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >

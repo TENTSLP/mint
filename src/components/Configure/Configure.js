@@ -40,7 +40,7 @@ export default () => {
     dirty: true,
     restAPI: window.localStorage.getItem("restAPI")
   });
-  const defaultRestUrl = "https://rest.tent.app/v2/";
+  const defaultRestUrl = "https://trest.tent.app/v2/";
 
   const newRestApiUrl = (protocol, restAPI) => protocol.concat(restAPI);
   const handleChangeProcotol = protocol => setProtocol(protocol);
@@ -109,14 +109,14 @@ export default () => {
               <Form.Item
                 validateStatus={
                   !data.dirty &&
-                  (option === "custom" && !isValidCustomRest(option, protocol, data.restAPI))
+                  option === "custom" && !isValidCustomRest(option, protocol, data.restAPI)
                     ? "error"
                     : ""
                 }
                 help={
                   !data.dirty &&
-                  (option === "custom" && !isValidCustomRest(option, protocol, data.restAPI))
-                    ? "Should be something like https://rest.tent.app/v2"
+                  option === "custom" && !isValidCustomRest(option, protocol, data.restAPI)
+                    ? "Should be something like https://trest.tent.app/v2"
                     : ""
                 }
               >
@@ -134,7 +134,7 @@ export default () => {
                   <Input
                     spellCheck="false"
                     style={{ marginTop: "10px" }}
-                    placeholder={"rest.tent.app/v2/"}
+                    placeholder={"trest.tent.app/v2/"}
                     name="restAPI"
                     onChange={e => handleChange(e)}
                     required

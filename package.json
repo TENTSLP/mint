@@ -2,7 +2,7 @@
   "name": "pitico",
   "version": "0.1.1",
   "private": true,
-  "homepage": "https://mint.tent.app",
+  "homepage": "https://testnet-mint.tent.app",
   "dependencies": {
     "@ant-design/dark-theme": "^1.0.3",
     "@babel/core": "7.6.0",

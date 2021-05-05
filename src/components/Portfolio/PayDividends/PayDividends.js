@@ -75,7 +75,7 @@ export const StyledButtonWrapper = styled.div`
   justify-content: center;
 `;
 
-const SLP_TOKEN_ICONS_URL = "https://tokens.tent.app/64";
+const SLP_TOKEN_ICONS_URL = "https://testnet-tokens.tent.app/64";
 
 const PayDividends = (SLP, { token, onClose, bordered = false }) => {
   const { wallet, balances, slpBalancesAndUtxos } = React.useContext(WalletContext);
@@ -357,7 +357,8 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                             <Form.Item
                               validateStatus={
                                 formData.dirty &&
-                                !tokenInfo && lastSearchedTokenId &&
+                                !tokenInfo &&
+                                lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&
@@ -368,7 +369,8 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                               }
                               help={
                                 formData.dirty &&
-                                !tokenInfo && lastSearchedTokenId &&
+                                !tokenInfo &&
+                                lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&

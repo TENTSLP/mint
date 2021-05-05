@@ -45,10 +45,15 @@ const SendBCH = ({ onClose, outerAction, filledAddress, showCardHeader, callback
     const { address, value } = formData;
 
     try {
-      const link = await sendBch(wallet, slpBalancesAndUtxos.nonSlpUtxos, {
-        addresses: [filledAddress || address],
-        values: [value]
-      }, callbackTxId);
+      const link = await sendBch(
+        wallet,
+        slpBalancesAndUtxos.nonSlpUtxos,
+        {
+          addresses: [filledAddress || address],
+          values: [value]
+        },
+        callbackTxId
+      );
 
       notification.success({
         message: "Success",
@@ -268,7 +273,7 @@ const SendBCH = ({ onClose, outerAction, filledAddress, showCardHeader, callback
                       }}
                     >
                       <a
-                        href={`https://explorer.tent.app/tx/${el.txid}`}
+                        href={`https://testnet-explorer.tent.app/tx/${el.txid}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -336,7 +341,7 @@ const SendBCH = ({ onClose, outerAction, filledAddress, showCardHeader, callback
                     </div>
                   ))}
                   <a
-                    href={`https://explorer.tent.app/address/${wallet.Path145.cashAddress}`}
+                    href={`https://testnet-explorer.tent.app/address/${wallet.Path145.cashAddress}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
