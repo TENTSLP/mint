@@ -117,7 +117,7 @@ export const QRCode = ({ address, size = 210, onClick = () => null, ...otherProp
           renderAs={"svg"}
           includeMargin
           imageSettings={{
-            src: address && address.includes("tentslp") ? slpLogo : bchLogo,
+            src: address && address.includes("tt") ? slpLogo : bchLogo,
             x: null,
             y: null,
             height: 42,
@@ -131,7 +131,7 @@ export const QRCode = ({ address, size = 210, onClick = () => null, ...otherProp
             ref={txtRef}
             prefix={
               <img
-                src={address && address.includes("tentslp") ? slpLogo : bchLogo}
+                src={address && address.includes("tt") ? slpLogo : bchLogo}
                 alt=""
                 width={16}
                 height={16}
