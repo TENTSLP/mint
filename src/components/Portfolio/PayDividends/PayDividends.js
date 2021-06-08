@@ -334,7 +334,7 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                     &nbsp; &nbsp; &nbsp;
                     <Col>
                       <Tooltip
-                        title={`To be eligible, addresses must have a TENTSLP balance such that their proportional share of your dividend payment is greater than ${DUST} TENT`}
+                        title={`To be eligible, addresses must have a TENT Tokens balance such that their proportional share of your dividend payment is greater than ${DUST} TENT`}
                       >
                         <StyledStat>
                           <Icon type="usergroup-add" />
@@ -357,7 +357,8 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                             <Form.Item
                               validateStatus={
                                 formData.dirty &&
-                                !tokenInfo && lastSearchedTokenId &&
+                                !tokenInfo &&
+                                lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&
@@ -368,7 +369,8 @@ const PayDividends = (SLP, { token, onClose, bordered = false }) => {
                               }
                               help={
                                 formData.dirty &&
-                                !tokenInfo && lastSearchedTokenId &&
+                                !tokenInfo &&
+                                lastSearchedTokenId &&
                                 (!/^[A-Fa-f0-9]{64}$/g.test(formData.tokenId) ||
                                   (tokenNotFound &&
                                     lastSearchedTokenId === formData.tokenId &&

@@ -8,7 +8,7 @@ const getSLPTxType = scriptASMArray => {
   }
 
   if (scriptASMArray[1] !== "534c5000") {
-    throw new Error("Not a TENTSLP OP_RETURN");
+    throw new Error("Not a TENT Tokens OP_RETURN");
   }
 
   if (
@@ -49,7 +49,7 @@ const decodeTxOut = withSLP((SLP, txOut) => {
       return out;
     }
     if (vout !== 1) {
-      throw new Error("Not a TENTSLP txout");
+      throw new Error("Not a TENT Tokens txout");
     }
     out.tokenId = txOut.txid;
     out.balance = new BigNumber(script[10], 16);
@@ -64,7 +64,7 @@ const decodeTxOut = withSLP((SLP, txOut) => {
     }
 
     if (txOut.vout !== 1) {
-      throw new Error("Not a TENTSLP txout");
+      throw new Error("Not a TENT Tokens txout");
     }
     out.tokenId = script[4];
 
@@ -74,7 +74,7 @@ const decodeTxOut = withSLP((SLP, txOut) => {
     out.balance = new BigNumber(script[6], 16);
   } else if (type === "send") {
     if (script.length <= vout + 4) {
-      throw new Error("Not a TENTSLP txout");
+      throw new Error("Not a TENT Tokens txout");
     }
 
     out.tokenId = script[4];
@@ -147,7 +147,10 @@ export default withSLP(async (SLP, addresses) => {
   });
 
   let tokens = Object.values(tokensByTxId);
-  const tokenIdsChunks = chunk(tokens.map(token => token.tokenId), 20);
+  const tokenIdsChunks = chunk(
+    tokens.map(token => token.tokenId),
+    20
+  );
   const tokenTxDetails = revertChunk(
     await Promise.all(tokenIdsChunks.map(tokenIdsChunk => SLP.Transaction.details(tokenIdsChunk)))
   );

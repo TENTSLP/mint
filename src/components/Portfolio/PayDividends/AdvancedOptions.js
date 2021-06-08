@@ -167,12 +167,12 @@ export const AdvancedOptions = ({ advancedOptions, setAdvancedOptions, disabled 
                           validateStatus={addressToExclude.valid === false ? "error" : ""}
                           help={
                             addressToExclude.valid === false
-                              ? "Must be a valid TENT or TENTSLP address"
+                              ? "Must be a valid TENT or TENT Tokens address"
                               : ""
                           }
                           onScan={result => updateAddressesToExclude(result, index)}
                           inputProps={{
-                            placeholder: "TENT or TENTSLP address",
+                            placeholder: "TENT or TENT Tokens address",
                             onChange: e => updateAddressesToExclude(e.target.value, index),
                             required: true,
                             value: advancedOptions.addressesToExclude[index]

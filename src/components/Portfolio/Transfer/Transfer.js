@@ -61,10 +61,10 @@ const Transfer = ({ token, onClose }) => {
         message = "Invalid address";
       } else if (/Transaction input TENT Amount is too low/.test(e.message)) {
         message = "Not enough TENT. Deposit some funds to use this feature.";
-      } else if (/Token Receiver Address must be simpleledger format/.test(e.message)) {
-        message = "Token Receiver Address must be simpleledger format.";
+      } else if (/Token Receiver Address must be TENT Tokens format/.test(e.message)) {
+        message = "Token Receiver Address must be TENT Tokens format.";
       } else if (/Invalid TENT Address. Double check your address is valid/.test(e.message)) {
-        message = "Invalid TENTSLP address. Double check your address is valid.";
+        message = "Invalid TENT Tokens address. Double check your address is valid.";
       } else if (!e.error) {
         message = `Transaction failed: no response from ${getRestUrl()}.`;
       } else if (/Could not communicate with full node or other external service/.test(e.error)) {
@@ -130,12 +130,12 @@ const Transfer = ({ token, onClose }) => {
                       validateStatus={formData.dirty && !formData.address ? "error" : ""}
                       help={
                         formData.dirty && !formData.address
-                          ? "Should be a valid tentslp address"
+                          ? "Should be a valid TENT Tokens address"
                           : ""
                       }
                       onScan={result => setFormData({ ...formData, address: result })}
                       inputProps={{
-                        placeholder: "TENTSLP Address",
+                        placeholder: "TENT Tokens Address",
                         name: "address",
                         onChange: e => handleChange(e),
                         required: true,

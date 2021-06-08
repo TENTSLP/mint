@@ -136,12 +136,12 @@ const Mint = ({ token, onClose }) => {
                       validateStatus={!formData.dirty && !formData.baton ? "error" : ""}
                       help={
                         !formData.dirty && !formData.baton
-                          ? "Should be a valid tentslp address"
+                          ? "Should be a valid Tent Tokens address"
                           : ""
                       }
                       onScan={result => setFormData({ ...formData, address: result })}
                       inputProps={{
-                        placeholder: "Baton (tentslp address)",
+                        placeholder: "Baton (Tent Tokens address)",
                         name: "baton",
                         onChange: e => handleChange(e),
                         required: true,

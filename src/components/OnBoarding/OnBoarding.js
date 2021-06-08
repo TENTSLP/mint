@@ -133,14 +133,14 @@ export const OnBoarding = ({ history }) => {
                 >
                   open source,
                 </a>{" "}
-                non-custodial web wallet supporting TENTSLP and TENT.{" "}
+                non-custodial web wallet supporting TENT Tokens and TENT.{" "}
               </p>
               <p>
                 {" "}
                 Web wallets offer user convenience, but storing large amounts of money on a web
                 wallet is not recommended.
               </p>
-              <p>Creating your own TENTSLP tokens only costs a few cents worth of TENT.</p>
+              <p>Creating your own TENT Tokens only costs a few cents worth of TENT.</p>
             </div>
           </Card>
         </Col>
