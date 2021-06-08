@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React from "react";
 import { withRouter, useHistory } from "react-router-dom";
 import { WalletContext } from "../../utils/context";
@@ -16,30 +17,17 @@ import {
   Tooltip,
   Alert,
   Checkbox,
-  Popconfirm,
-  Slider,
-  Switch
+  Popconfirm
 } from "antd";
 import styled from "styled-components";
-import Cropper from "react-easy-crop";
 import Paragraph from "antd/lib/typography/Paragraph";
 import createToken from "../../utils/broadcastTransaction";
 import StyledCreate from "../Common/StyledPage";
-import { EnhancedModal } from "../Portfolio/EnhancedModal";
 import { QRCode } from "../Common/QRCode";
-import getCroppedImg from "../../utils/cropImage";
-import getRoundImg from "../../utils/roundImage";
-import getResizedImage from "../../utils/resizeImage";
 
 import * as CryptoJS from "crypto-js";
 
 const { Dragger } = Upload;
-
-const StyledSwitch = styled.div`
-  .ant-switch-checked {
-    background-color: #f34745 !important;
-  }
-`;
 
 const StyledCard = styled.div`
   .ant-card-body {
@@ -134,54 +122,8 @@ const Create = () => {
   const [hash, setHash] = React.useState("");
   const [fileList, setFileList] = React.useState();
   const [file, setFile] = React.useState();
-  const [fileName, setFileName] = React.useState("");
-  const [tokenIconFileList, setTokenIconFileList] = React.useState();
-  const [rawImageUrl, setRawImageUrl] = React.useState("");
-  const [imageUrl, setImageUrl] = React.useState("");
+  const imageUrl = React.useState("");
   const [showConfirm, setShowConfirm] = React.useState(false);
-  const [showCropModal, setShowCropModal] = React.useState(false);
-  const [roundSelection, setRoundSelection] = React.useState(true);
-
-  const [crop, setCrop] = React.useState({ x: 0, y: 0 });
-  const [rotation, setRotation] = React.useState(0);
-  const [zoom, setZoom] = React.useState(1);
-  const [croppedAreaPixels, setCroppedAreaPixels] = React.useState(null);
-
-  const onCropComplete = React.useCallback((croppedArea, croppedAreaPixels) => {
-    setCroppedAreaPixels(croppedAreaPixels);
-  }, []);
-
-  const showCroppedImage = React.useCallback(async () => {
-    setLoading(true);
-
-    try {
-      const croppedResult = await getCroppedImg(rawImageUrl, croppedAreaPixels, rotation, fileName);
-
-      if (roundSelection) {
-        const roundResult = await getRoundImg(croppedResult.url, fileName);
-
-        await getResizedImage(
-          roundResult.url,
-          resizedResult => {
-            setData(prev => ({ ...prev, tokenIcon: resizedResult.file }));
-            setImageUrl(resizedResult.url);
-          },
-          fileName
-        );
-      } else {
-        setData(prev => ({ ...prev, tokenIcon: croppedResult.file }));
-        setImageUrl(croppedResult.url);
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }, [croppedAreaPixels, fileName, rawImageUrl, rotation, roundSelection]);
-
-  const onClose = React.useCallback(() => {
-    setShowCropModal(false);
-  }, []);
 
   const history = useHistory();
 
@@ -228,119 +170,6 @@ const Create = () => {
       setFile(undefined);
       setHash("");
       return false;
-    }
-  };
-
-  const handleTokenIconImage = (imgFile, callback) =>
-    new Promise((resolve, reject) => {
-      setLoading(true);
-      try {
-        const reader = new FileReader();
-
-        const width = 128;
-        const height = 128;
-        reader.readAsDataURL(imgFile);
-
-        reader.addEventListener("load", () => setRawImageUrl(reader.result));
-
-        reader.onload = event => {
-          const img = new Image();
-          img.src = event.target.result;
-          img.onload = () => {
-            const elem = document.createElement("canvas");
-            //console.log(`Canvas created`);
-            elem.width = width;
-            elem.height = height;
-            const ctx = elem.getContext("2d");
-            // img.width and img.height will contain the original dimensions
-            ctx.drawImage(img, 0, 0, width, height);
-            if (!HTMLCanvasElement.prototype.toBlob) {
-              Object.defineProperty(HTMLCanvasElement.prototype, "toBlob", {
-                value: function(callback, type, quality) {
-                  var dataURL = this.toDataURL(type, quality).split(",")[1];
-                  setTimeout(function() {
-                    var binStr = atob(dataURL),
-                      len = binStr.length,
-                      arr = new Uint8Array(len);
-                    for (var i = 0; i < len; i++) {
-                      arr[i] = binStr.charCodeAt(i);
-                    }
-                    callback(new Blob([arr], { type: type || "image/png" }));
-                  });
-                }
-              });
-            }
-
-            ctx.canvas.toBlob(
-              blob => {
-                console.log(imgFile.name);
-
-                let fileNameParts = imgFile.name.split(".");
-                fileNameParts.pop();
-                let fileNamePng = fileNameParts.join(".") + ".png";
-
-                const file = new File([blob], fileNamePng, {
-                  type: "image/png"
-                });
-                setFileName(fileNamePng);
-                const resultReader = new FileReader();
-
-                resultReader.readAsDataURL(file);
-                setData(prev => ({ ...prev, tokenIcon: file }), console.log(file));
-                resultReader.addEventListener("load", () => callback(resultReader.result));
-                setLoading(false);
-                setShowCropModal(true);
-                resolve();
-              },
-              "image/png",
-              1
-            );
-          };
-        };
-      } catch (err) {
-        console.log(`Error in handleTokenIconImage()`);
-        console.log(err);
-        reject(err);
-      }
-    });
-
-  const transformTokenIconFile = file => {
-    return new Promise((resolve, reject) => {
-      reject();
-      // setLoading(false);
-    });
-  };
-
-  const beforeTokenIconUpload = file => {
-    try {
-      if (file.type.split("/")[0] !== "image") {
-        throw new Error("You can only upload image files!");
-      } else {
-        setLoading(true);
-        handleTokenIconImage(file, imageUrl => setImageUrl(imageUrl));
-      }
-    } catch (e) {
-      console.error("error", e);
-      notification.error({
-        message: "Error",
-        description: e.message || e.error || JSON.stringify(e),
-        duration: 0
-      });
-      setTokenIconFileList(undefined);
-      setData(prev => ({ ...prev, tokenIcon: undefined }));
-      setImageUrl("");
-      return false;
-    }
-  };
-
-  const handleChangeTokenIconUpload = info => {
-    let list = [...info.fileList];
-
-    if (info.file.type.split("/")[0] !== "image") {
-      setTokenIconFileList(undefined);
-      setImageUrl("");
-    } else {
-      setTokenIconFileList(list.slice(-1));
     }
   };
 
@@ -437,7 +266,6 @@ const Create = () => {
         }
         formData.append("tokenId", link.substr(link.length - 64));
         const apiUrl = "https://mint-icons.btctest.net/new";
-        //const apiUrl = "http://localhost:3002/new";
 
         try {
           const apiTest = await fetch(apiUrl, {
@@ -683,171 +511,18 @@ const Create = () => {
                     </Tooltip>
                   </Form.Item>
 
-                  <Collapse style={{ marginBottom: "24px" }} accordion>
-                    <Collapse.Panel
-                      header={<>Add token icon</>}
-                      key="1"
-                      style={{ textAlign: "left" }}
+                  <Form.Item>
+                    <a
+                      href={"https://github.com/TENTSLP/tentslp-token-icons#adding-your-icon"}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <Form.Item>
-                        <Dragger
-                          multiple={false}
-                          transformFile={transformTokenIconFile}
-                          beforeUpload={beforeTokenIconUpload}
-                          onChange={handleChangeTokenIconUpload}
-                          onRemove={() => false}
-                          fileList={tokenIconFileList}
-                          name="tokenIcon"
-                          style={{
-                            background: "#D3D3D3",
-                            borderRadius: "8px"
-                          }}
-                        >
-                          {imageUrl ? (
-                            <img
-                              src={imageUrl}
-                              alt="avatar"
-                              // style={{ maxHeight: "128px", maxWidth: "100%" }}
-                            />
-                          ) : (
-                            <>
-                              {" "}
-                              <Icon style={{ fontSize: "24px" }} type="upload" />
-                              <p>Click, or drag file to this area to upload</p>
-                              <p style={{ fontSize: "12px" }}>Must be an image</p>
-                            </>
-                          )}
-                        </Dragger>
-
-                        {!loading && data.tokenIcon && (
-                          <>
-                            <Tooltip title={data.tokenIcon.name}>
-                              <Paragraph
-                                ellipsis
-                                style={{
-                                  lineHeight: "normal",
-                                  textAlign: "center",
-                                  cursor: "pointer"
-                                }}
-                                onClick={() => setShowCropModal(true)}
-                              >
-                                <Icon type="paper-clip" />
-                                {data.tokenIcon.name}
-                              </Paragraph>
-                              <Paragraph
-                                ellipsis
-                                style={{
-                                  lineHeight: "normal",
-                                  textAlign: "center",
-                                  marginBottom: "10px",
-                                  cursor: "pointer"
-                                }}
-                                onClick={() => setShowCropModal(true)}
-                              >
-                                Click here to crop or zoom your icon
-                              </Paragraph>
-                            </Tooltip>{" "}
-                          </>
-                        )}
-
-                        <EnhancedModal
-                          style={{ marginTop: "8px", textAlign: "left" }}
-                          expand={showCropModal}
-                          onClick={() => null}
-                          renderExpanded={() => (
-                            <>
-                              {" "}
-                              <Cropper
-                                showGrid={false}
-                                zoomWithScroll={false}
-                                image={rawImageUrl}
-                                crop={crop}
-                                zoom={zoom}
-                                rotation={rotation}
-                                cropShape={roundSelection ? "round" : "rect"}
-                                aspect={1 / 1}
-                                onCropChange={setCrop}
-                                onCropComplete={onCropComplete}
-                                onZoomChange={setZoom}
-                                onRotationChange={setRotation}
-                                style={{ top: "80px" }}
-                              />
-                              <StyledSwitch>
-                                <Switch
-                                  style={{ color: "#F34745" }}
-                                  name="cropShape"
-                                  onChange={checked => setRoundSelection(!checked)}
-                                />{" "}
-                                {roundSelection
-                                  ? "Change to Square Crop Shape"
-                                  : "Change to Round Crop Shap"}
-                              </StyledSwitch>
-                              {"Zoom:"}
-                              <Slider
-                                defaultValue={1}
-                                onChange={zoom => setZoom(zoom)}
-                                min={1}
-                                max={10}
-                                step={0.1}
-                              />
-                              {"Rotation:"}
-                              <Slider
-                                defaultValue={0}
-                                onChange={rotation => setRotation(rotation)}
-                                min={0}
-                                max={360}
-                                step={1}
-                              />
-                              <Button onClick={() => showCroppedImage() && onClose()}>
-                                Save changes
-                              </Button>
-                            </>
-                          )}
-                          onClose={onClose}
-                        />
-                        {/* Upload token icon
-                        <Input
-                          type="file"
-                          placeholder="Token Icon"
-                          name="tokenIcon"
-                          onChange={e => handleChangeFile(e)}
-                        /> */}
-                      </Form.Item>
-
-                      <Form.Item
-                        labelAlign="left"
-                        labelCol={{ span: 3, offset: 0 }}
-                        colon={false}
-                        validateStatus={
-                          !data.dirty &&
-                          data.email &&
-                          !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-                            String(data.email).toLowerCase()
-                          )
-                            ? "error"
-                            : ""
-                        }
-                        help={
-                          !data.dirty &&
-                          data.email &&
-                          !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-                            String(data.email).toLowerCase()
-                          )
-                            ? "Must be a valid email address (or no email at all)"
-                            : ""
-                        }
-                      >
-                        <Input
-                          placeholder="your email address (optional)"
-                          name="email"
-                          onChange={e => handleChange(e)}
-                        />
-                      </Form.Item>
                       <Paragraph>
-                        You can add an icon after your token is created at the Icons page
+                        If you want to add an icon to your token please click here and follow the
+                        instructions.
                       </Paragraph>
-                    </Collapse.Panel>
-                  </Collapse>
+                    </a>
+                  </Form.Item>
 
                   <StyledMoreOptionsCollapse>
                     <Collapse style={{ marginBottom: "12px" }} bordered={false}>

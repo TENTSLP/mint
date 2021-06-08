@@ -30,7 +30,6 @@ import getTokenTransactionHistory from "../../utils/getTokenTransactionHistory";
 import bchFlagLogo from "../../assets/tent-logo.png";
 
 export const SLP_TOKEN_ICONS_URL = "https://tokens.tent.app/64";
-export const BITCOIN_DOT_COM_ICONS_URL = "https://tokens.bitcoin.com/64";
 
 export const StyledCollapse = styled(Collapse)`
   background: #fbfcfd !important;
@@ -511,10 +510,7 @@ export default () => {
                             <Img
                               heigh={16}
                               width={16}
-                              src={[
-                                `${BITCOIN_DOT_COM_ICONS_URL}/${token.tokenId}.png`,
-                                `${SLP_TOKEN_ICONS_URL}/${token.tokenId}.png`
-                              ]}
+                              src={[`${SLP_TOKEN_ICONS_URL}/${token.tokenId}.png`]}
                               unloader={
                                 <img
                                   alt=""
@@ -542,10 +538,7 @@ export default () => {
                   <Meta
                     avatar={
                       <Img
-                        src={[
-                          `${BITCOIN_DOT_COM_ICONS_URL}/${token.tokenId}.png`,
-                          `${SLP_TOKEN_ICONS_URL}/${token.tokenId}.png`
-                        ]}
+                        src={[`${SLP_TOKEN_ICONS_URL}/${token.tokenId}.png`]}
                         unloader={
                           <img
                             alt={`identicon of tokenId ${token.tokenId} `}

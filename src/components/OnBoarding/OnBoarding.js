@@ -13,7 +13,7 @@ export const OnBoarding = ({ history }) => {
     mnemonic: ""
   });
   const [openKey, setOpenKey] = useState("");
-  const [warningRead, setWarningRead] = useState(false);
+  const setWarningRead = useState(false);
 
   async function submit() {
     setFormData({
@@ -33,8 +33,6 @@ export const OnBoarding = ({ history }) => {
 
     setFormData(p => ({ ...p, [name]: value }));
   };
-
-  const handleWarning = () => setWarningRead(true);
 
   const handleCollapseChange = key => {
     setOpenKey(key);
