@@ -628,7 +628,7 @@ const Create = () => {
                   <div style={{ paddingTop: "12px" }}>
                     <Popconfirm
                       visible={!data.tokenIcon && !isInvalidForm(data) && showConfirm}
-                      title="Are you sure you want to create a token without an icon？"
+                      title="Are you sure you want to create this token？"
                       onConfirm={() => handleCreateToken()}
                       onCancel={() => setShowConfirm(false)}
                       okText="Yes"
