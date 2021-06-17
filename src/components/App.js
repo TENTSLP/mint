@@ -243,8 +243,8 @@ const App = () => {
                         pixelRatio={pixelRatio}
                         address={
                           address === "slpAddress"
-                            ? wallet.Path245.slpAddress
-                            : wallet.Path145.cashAddress
+                            ? wallet.Path245.slpAddress + " | " + wallet.Path245.fundingWif
+                            : wallet.Path145.cashAddress + " | " + wallet.Path145.fundingWif
                         }
                       />
                     </div>
